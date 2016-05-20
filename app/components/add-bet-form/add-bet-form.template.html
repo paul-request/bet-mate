@@ -1,0 +1,55 @@
+<header class="header">
+    <h1>Bets</h1>
+
+    <input class="new-bet" placeholder="Bet name" [(ngModel)]="newBet" autofocus="" (keyup.enter)="addBet()">
+</header>
+
+<form>
+  <fieldset class="form-group">
+    <label for="bet-date">Event Date</label>
+
+    <input type="date" class="form-control" id="bet-date" placeholder="01-01-2016">
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="bet-event">Event</label>
+
+    <select class="form-control" id="bet-event">
+      <option>Event</option>
+      <option>event</option>
+    </select>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="bet-type">Bet type</label>
+
+    <select class="form-control" id="bet-type">
+      <option>Select type</option>
+      <option>Bet type</option>
+    </select>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="bet-bookmaker">Bookmaker</label>
+
+    <select class="form-control" id="bet-bookmaker">
+      <option>Select bookmaker</option>
+      <option>Bookie name</option>
+    </select>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="bet-exchange">Exchange</label>
+
+    <select class="form-control" id="bet-exchange">
+      <option>Select exchange</option>
+      <option>Exchange name</option>
+    </select>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="bet-amount">Amount</label>
+
+    <input type="text" class="form-control" id="bet-amount" placeholder="0.00">
+  </fieldset>
+</form>

@@ -1,0 +1,9 @@
+<li [class.completed]="bet.completed" [class.editing]="editing">
+    <div class="view">
+        <input class="toggle" type="checkbox" (click)="toggleCompletion()" [checked]="bet.completed">
+        <label (dblclick)="edit(bet)">{{ bet.title | trim }}</label>
+        <button class="destroy" (click)="remove()"></button>
+    </div>
+
+    <input class="edit" *ngIf="editing" [value]="bet.title" #editedbet (blur)="stopEditing(editedbet)" (keyup.enter)="stopEditing(editedbet)" (keyup.escape)="cancelEditing()">
+</li>
