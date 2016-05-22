@@ -2,16 +2,36 @@ import * as uuid from 'node-uuid';
 
 export class BetModel {
   completed;
-  title;
   uid;
+  bookmaker;
+  exchange;
+  date;
+  type;
+  event;
+  value;
 
-  setTitle(title) {
-    this.title = title.trim();
+  constructor(...options) {
+    this.uid = options.uid || uuid.v4();
+
+    this.bookmaker = options.bookmaker || null;
+    this.exchange = options.exchange || null;
+    this.date = options.date || new Date();
+    this.type = options.type || null;
+    this.event = options.event || null;
+    this.value = options.value || '0.00';
+    this.completed = options.completed || false;
   }
 
-  constructor(title) {
-    this.uid = uuid.v4();
-    this.completed = false;
-    this.title = title.trim();
+  get data() {
+    return {
+      uid: this.uid,
+      bookmaker: this.bookmaker,
+      exchange: this.exchange,
+      date: this.date,
+      type: this.type,
+      event: this.event,
+      value: this.value,
+      completed: this.completed
+    };
   }
 }

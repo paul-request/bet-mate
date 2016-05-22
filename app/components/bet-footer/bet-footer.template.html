@@ -1,5 +1,5 @@
 <footer class="footer" *ngIf="getCount()">
-    <span class="bet-count"><strong>{{ getRemainingCount() }}</strong> {{ getRemainingCount() == 1 ? 'item' : 'items' }} left</span>
+    <span class="bet-count"><strong>{{ getOpenCount() }}</strong> open {{ getOpenCount() == 1 ? 'bet' : 'bets' }}</span>
 
     <ul class="filters">
         <li>

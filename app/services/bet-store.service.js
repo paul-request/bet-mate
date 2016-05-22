@@ -1,18 +1,19 @@
 import localStorage from 'localStorage';
-
 import { BetModel } from '../models/bet.model';
+import { BET_STORE_KEYS } from '../constants/constants';
 
 export class BetStoreService {
   bets = [];
 
   constructor() {
-    let persistedBets = JSON.parse(localStorage.getItem('bet-mate-bets')) || [];
+    let persistedBets = JSON.parse(localStorage.getItem(BET_STORE_KEYS.BETS)) || [];
 
     this.bets = persistedBets.map(bet => {
-      let ret = new BetModel(bet.title);
-      ret.completed = bet.completed;
-      ret.uid = bet.uid;
-      return ret;
+      const {
+        uid, bookmaker, exchange, date, type, event, value, completed
+      } = bet;
+
+      return new BetModel(uid, bookmaker, exchange, date, type, event, value, completed);
     });
   }
 
@@ -34,7 +35,7 @@ export class BetStoreService {
     this.persist();
   }
 
-  getRemaining() {
+  getOpen() {
     if (!this.openBets) {
       this.openBets = this.get({ completed: false });
     }
@@ -68,14 +69,14 @@ export class BetStoreService {
     }
   }
 
-  add(title) {
-    this.bets.push(new BetModel(title));
+  add(model) {
+    this.bets.push(model.data);
     this.persist();
   }
 
   persist() {
     this._clearCache();
-    localStorage.setItem('bet-mate-bets', JSON.stringify(this.bets));
+    localStorage.setItem(BET_STORE_KEYS.BETS, JSON.stringify(this.bets));
   }
 
   _findByUid(uid) {

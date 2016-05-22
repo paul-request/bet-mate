@@ -1,55 +1,47 @@
-<header class="header">
-    <h1>Bets</h1>
-
-    <input class="new-bet" placeholder="Bet name" [(ngModel)]="newBet" autofocus="" (keyup.enter)="addBet()">
-</header>
-
 <form>
   <fieldset class="form-group">
     <label for="bet-date">Event Date</label>
 
-    <input type="date" class="form-control" id="bet-date" placeholder="01-01-2016">
+    <input type="date" class="form-control" id="bet-date" [(ngModel)]="bet.date" placeholder="01-01-2016" required>
   </fieldset>
 
   <fieldset class="form-group">
     <label for="bet-event">Event</label>
 
-    <select class="form-control" id="bet-event">
-      <option>Event</option>
-      <option>event</option>
+    <select class="form-control c-select" id="bet-event" [(ngModel)]="bet.event" required>
+      <option *ngFor="let event of events" [value]="event">{{ event }}</option>
     </select>
   </fieldset>
 
   <fieldset class="form-group">
     <label for="bet-type">Bet type</label>
 
-    <select class="form-control" id="bet-type">
-      <option>Select type</option>
-      <option>Bet type</option>
+    <select class="form-control c-select" id="bet-type" [(ngModel)]="bet.type" required>
+      <option *ngFor="let type of types" [value]="type">{{ type }}</option>
     </select>
   </fieldset>
 
   <fieldset class="form-group">
     <label for="bet-bookmaker">Bookmaker</label>
 
-    <select class="form-control" id="bet-bookmaker">
-      <option>Select bookmaker</option>
-      <option>Bookie name</option>
+    <select class="form-control c-select" id="bet-bookmaker" [(ngModel)]="bet.bookmaker" required>
+      <option *ngFor="let bookmaker of bookmakers" [value]="bookmaker">{{ bookmaker }}</option>
     </select>
   </fieldset>
 
   <fieldset class="form-group">
     <label for="bet-exchange">Exchange</label>
 
-    <select class="form-control" id="bet-exchange">
-      <option>Select exchange</option>
-      <option>Exchange name</option>
+    <select class="form-control c-select" id="bet-exchange" [(ngModel)]="bet.exchange" required>
+      <option *ngFor="let exchange of exchanges" [value]="exchange">{{ exchange }}</option>
     </select>
   </fieldset>
 
   <fieldset class="form-group">
     <label for="bet-amount">Amount</label>
 
-    <input type="text" class="form-control" id="bet-amount" placeholder="0.00">
+    <input type="text" class="form-control" id="bet-amount" placeholder="0.00" [(ngModel)]="bet.value" required>
   </fieldset>
+
+  <button type="button" class="btn btn-primary" (click)="new()">Add</button>
 </form>

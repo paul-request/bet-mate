@@ -23,8 +23,8 @@ export class BetFooterComponent {
     return this._betStore.bets.length;
   }
 
-  getRemainingCount() {
-    return this._betStore.getRemaining().length;
+  getOpenCount() {
+    return this._betStore.getOpen().length;
   }
 
   hasCompleted() {
