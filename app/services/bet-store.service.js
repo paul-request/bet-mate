@@ -10,10 +10,10 @@ export class BetStoreService {
 
     this.bets = persistedBets.map(bet => {
       const {
-        uid, bookmaker, exchange, date, type, event, value, completed
+        uid, bookmaker, exchange, eventDate, type, event, value, completed
       } = bet;
 
-      return new BetModel(uid, bookmaker, exchange, date, type, event, value, completed);
+      return new BetModel(uid, bookmaker, exchange, eventDate, type, event, value, completed);
     });
   }
 

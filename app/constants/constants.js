@@ -43,4 +43,8 @@ export const EXCHANGES = [
   'Smarkets'
 ];
 
-export const DATE_FORMAT = 'dd/mm/yyyy';
+export const DATE_FORMAT = 'dd/MM/yyyy';
+export const CURRENCY = {
+  name: 'Pound Sterling',
+  symbol: '£'
+}
