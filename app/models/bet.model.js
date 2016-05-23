@@ -9,7 +9,7 @@ export class BetModel {
       eventDate: null,
       type: null,
       event: null,
-      value: 0,
+      value: null,
       completed: false
     };
 
