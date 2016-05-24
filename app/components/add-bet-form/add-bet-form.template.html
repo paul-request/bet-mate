@@ -12,7 +12,7 @@
            [(ngModel)]="bet.eventDate">
 
     <p class="form-control-label"
-       [hidden]="eventDate.valid || eventDate.touched">Event date is required</p>
+       [hidden]="eventDate.valid || !eventDate.touched">Event date is required</p>
   </fieldset>
 
   <fieldset class="form-group"
