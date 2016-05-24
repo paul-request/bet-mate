@@ -14,10 +14,4 @@ import { BetComponent } from '../bet-list/bet-list.component';
 @RouteConfig([
   { path: '/:status', component: BetComponent, name: 'Bet' }
 ])
-export class AppComponent {
-
-  constructor(@Inject('AUTHOR') author) {
-    this.author = author;
-  }
-
-}
+export class AppComponent { }

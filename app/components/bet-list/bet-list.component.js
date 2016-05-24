@@ -13,7 +13,11 @@ import { BetItemComponent } from '../bet-item/bet-item.component';
   directives: [AddBetFormComponent, BetFooterComponent, BetItemComponent]
 })
 export class BetComponent {
-  constructor(betStore: BetStoreService, params: RouteParams) {
+  static get parameters() {
+    return [[BetStoreService], [RouteParams]];
+  }
+
+  constructor(betStore, params) {
     this._betStore = betStore;
     this._params = params;
   }

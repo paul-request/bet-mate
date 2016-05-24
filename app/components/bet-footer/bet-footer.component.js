@@ -10,7 +10,11 @@ import template from './bet-footer.template.html';
   directives: [ROUTER_DIRECTIVES]
 })
 export class BetFooterComponent {
-  constructor(betStore: BetStoreService, params: RouteParams) {
+  static get parameters() {
+    return [[BetStoreService], [RouteParams]];
+  }
+
+  constructor(betStore, params) {
     this._betStore = betStore;
     this._params = params;
   }

@@ -9,6 +9,5 @@ bootstrap(AppComponent, [
   BetStoreService,
   FORM_PROVIDERS,
   ROUTER_PROVIDERS,
-  { provide: LocationStrategy, useClass: HashLocationStrategy },
-  { provide: 'AUTHOR', useValue: 'Paul Bennett' }
+  { provide: LocationStrategy, useClass: HashLocationStrategy }
 ]);

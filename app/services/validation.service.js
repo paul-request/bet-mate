@@ -2,7 +2,6 @@
 import { AbstractControl } from '@angular/common';
 
 export class ValidationService {
-
     // static getValidatorErrorMessage(code: string) {
     //     let config = {
     //         'required': 'Required',
@@ -41,11 +40,11 @@ export class ValidationService {
     //     }
     // }
 
-    static dateValidator(control: AbstractControl) {
+    static dateValidator(control) {
       return null;
     }
 
-    static currencyValidator(control: AbstractControl) {
+    static currencyValidator(control) {
       return null;
     }
 }

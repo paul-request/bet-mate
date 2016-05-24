@@ -14,7 +14,11 @@ import { BET_TYPES, BET_EVENTS, BOOKMAKERS, EXCHANGES } from  '../../constants/c
   //directives: [ControlMessages]
 })
 export class AddBetFormComponent {
-  constructor(betStore: BetStoreService, formBuilder: FormBuilder) {
+  static get parameters() {
+    return [[BetStoreService], [FormBuilder]];
+  }
+
+  constructor(betStore, formBuilder) {
     this.types = BET_TYPES;
     this.events = BET_EVENTS;
     this.bookmakers = BOOKMAKERS;
