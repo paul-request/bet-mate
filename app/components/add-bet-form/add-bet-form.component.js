@@ -5,13 +5,13 @@ import { ValidationService } from '../../services/validation.service';
 import { BetStoreService } from '../../services/bet-store.service';
 import template from './add-bet-form.template.html';
 import { BetModel } from  '../../models/bet.model';
-//import { ControlMessages } from '../common/control-messages.component';
+import { ControlMessages } from '../common/control-messages.component';
 import { BET_TYPES, BET_EVENTS, BOOKMAKERS, EXCHANGES } from  '../../constants/constants';
 
 @Component({
   selector: 'add-bet-form',
   template: template,
-  //directives: [ControlMessages]
+  directives: [ControlMessages]
 })
 export class AddBetFormComponent {
   static get parameters() {

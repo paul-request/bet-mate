@@ -11,8 +11,7 @@
            #eventDate="ngForm"
            [(ngModel)]="bet.eventDate">
 
-    <p class="form-control-label"
-       [hidden]="eventDate.valid || !eventDate.touched">Event date is required</p>
+    <control-messages control="eventDate"></control-messages>
   </fieldset>
 
   <fieldset class="form-group"
@@ -26,8 +25,7 @@
       <option *ngFor="let e of events" [value]="e">{{ e }}</option>
     </select>
 
-    <p class="form-control-label"
-       [hidden]="event.valid || !event.touched">Event is required</p>
+    <control-messages control="event"></control-messages>
   </fieldset>
 
   <fieldset class="form-group"
@@ -41,8 +39,7 @@
       <option *ngFor="let type of types" [value]="type">{{ type }}</option>
     </select>
 
-    <p class="form-control-label"
-      [hidden]="type.valid || !type.touched">Type is required</p>
+    <control-messages control="type"></control-messages>
   </fieldset>
 
   <fieldset class="form-group"
@@ -57,8 +54,7 @@
               [value]="bookmaker">{{ bookmaker }}</option>
     </select>
 
-    <p class="form-control-label"
-       [hidden]="bookmaker.valid || !bookmaker.touched">Bookmaker is required</p>
+    <control-messages control="bookmaker"></control-messages>
   </fieldset>
 
   <fieldset class="form-group"
@@ -72,8 +68,7 @@
       <option *ngFor="let exchange of exchanges" [value]="exchange">{{ exchange }}</option>
     </select>
 
-    <p class="form-control-label"
-       [hidden]="exchange.valid || !exchange.touched">Exchange is required</p>
+    <control-messages control="exchange"></control-messages>
   </fieldset>
 
   <fieldset class="form-group"
@@ -86,8 +81,7 @@
            #value="ngForm"
            [(ngModel)]="bet.value">
 
-   <p class="form-control-label"
-      [hidden]="value.valid || !value.touched">Value is required</p>
+   <control-messages control="value"></control-messages>
   </fieldset>
 
   <button type="submit"

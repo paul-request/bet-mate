@@ -13,19 +13,20 @@ export class ControlMessages {
     return [[NgFormModel]];
   }
 
-  constructor(@Host() ngFormModel) {
-    this._form = ngFormModel.form;
+  constructor(ngFormModel) {
+    this._formModel = ngFormModel;
   }
 
   get errorMessage() {
     // Find the control in the Host (Parent) form
-    const ctrl = this._form.form.find(this.controlName);
+    const ctrl = this._formModel.form.find(this.controlName);
 
     for (let propertyName in ctrl.errors) {
-	  // If control has a error
+	     // If control has a error
       if (ctrl.errors.hasOwnProperty(propertyName) && ctrl.touched) {
- 	    // Return the appropriate error message from the Validation Service
-        return ValidationService.getValidatorErrorMessage(propertyName);
+ 	      // Return the appropriate error message from the Validation Service
+        // return ValidationService.getValidatorErrorMessage(propertyName);
+        return 'test message';
       }
     }
 
