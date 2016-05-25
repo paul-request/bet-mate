@@ -2,7 +2,9 @@
        (ngSubmit)="onSubmit()"
        #betForm="ngForm">
   <fieldset class="form-group"
-            [ngClass]="{ 'has-danger': !eventDate.valid && eventDate.touched }">
+            [ngClass]="{ 'has-danger':
+              !formControlGroup.find('eventDate').valid &&
+              formControlGroup.find('eventDate').touched }">
     <label class="form-control-label" for="date">Event Date</label>
 
     <input type="date"
@@ -15,7 +17,9 @@
   </fieldset>
 
   <fieldset class="form-group"
-            [ngClass]="{ 'has-danger': !event.valid && event.touched }">
+            [ngClass]="{ 'has-danger':
+              !formControlGroup.find('event').valid &&
+              formControlGroup.find('event').touched }">
     <label class="form-control-label" for="event">Event</label>
 
     <select class="form-control c-select"
@@ -29,7 +33,9 @@
   </fieldset>
 
   <fieldset class="form-group"
-            [ngClass]="{ 'has-danger': !type.valid && type.touched }">
+            [ngClass]="{ 'has-danger':
+              !formControlGroup.find('type').valid &&
+              formControlGroup.find('type').touched }">
     <label class="form-control-label" for="type">Bet type</label>
 
     <select class="form-control c-select"
@@ -43,7 +49,9 @@
   </fieldset>
 
   <fieldset class="form-group"
-            [ngClass]="{ 'has-danger': !bookmaker.valid && bookmaker.touched }">
+            [ngClass]="{ 'has-danger':
+              !formControlGroup.find('bookmaker').valid &&
+              formControlGroup.find('bookmaker').touched }">
     <label class="form-control-label" for="bookmaker">Bookmaker</label>
 
     <select class="form-control c-select"
@@ -58,7 +66,9 @@
   </fieldset>
 
   <fieldset class="form-group"
-            [ngClass]="{ 'has-danger': !exchange.valid && exchange.touched }">
+            [ngClass]="{ 'has-danger':
+              !formControlGroup.find('exchange').valid &&
+              formControlGroup.find('exchange').touched }">
     <label class="form-control-label" for="exchange">Exchange</label>
 
     <select class="form-control c-select"
@@ -72,7 +82,9 @@
   </fieldset>
 
   <fieldset class="form-group"
-            [ngClass]="{ 'has-danger': !value.valid && value.touched }">
+            [ngClass]="{ 'has-danger':
+              !formControlGroup.find('value').valid &&
+              formControlGroup.find('value').touched }">
     <label class="form-control-label" for="amount">Amount</label>
 
     <input type="text"

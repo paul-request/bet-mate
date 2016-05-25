@@ -10,6 +10,10 @@ export class ValidationService {
   }
 
   static currencyValidator(control) {
-    return null;
+    let isValid = !isNaN(parseFloat(control.value)) && isFinite(control.value);
+
+    if (isValid) return null;
+
+    return { invalidCurrency: true };
   }
 }
