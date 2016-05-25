@@ -41,6 +41,12 @@ export class ValidationService {
     // }
 
     static dateValidator(control) {
+      const datePattern = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+
+      if (control.value && !control.value.match(datePattern)) {
+        return { invalidDate: true };
+      }
+
       return null;
     }
 

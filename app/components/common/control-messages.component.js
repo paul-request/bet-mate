@@ -26,7 +26,7 @@ export class ControlMessages {
       if (ctrl.errors.hasOwnProperty(propertyName) && ctrl.touched) {
  	      // Return the appropriate error message from the Validation Service
         // return ValidationService.getValidatorErrorMessage(propertyName);
-        return 'test message';
+        return ctrl.getErrorMessage(propertyName);
       }
     }
 

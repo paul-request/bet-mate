@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { ControlGroup, FormBuilder, Validators } from '@angular/common';
+import { ControlGroup, Control, Validators } from '@angular/common';
 
 import { ValidationService } from '../../services/validation.service';
 import { BetStoreService } from '../../services/bet-store.service';
+import { CustomControl } from '../../services/custom-control.service';
 import template from './add-bet-form.template.html';
 import { BetModel } from  '../../models/bet.model';
 import { ControlMessages } from '../common/control-messages.component';
@@ -15,35 +16,59 @@ import { BET_TYPES, BET_EVENTS, BOOKMAKERS, EXCHANGES } from  '../../constants/c
 })
 export class AddBetFormComponent {
   static get parameters() {
-    return [[BetStoreService], [FormBuilder]];
+    return [[BetStoreService]];
   }
 
-  constructor(betStore, formBuilder) {
+  constructor(betStore) {
     this.types = BET_TYPES;
     this.events = BET_EVENTS;
     this.bookmakers = BOOKMAKERS;
     this.exchanges = EXCHANGES;
 
     this._betStore = betStore;
-    this._formBuilder = formBuilder;
 
     this.bet = new BetModel();
 
     this.buildForm();
   }
 
+  get errorConfig() {
+    return {
+      eventDate: {
+        required: 'Event date is required',
+        invalidDate: 'Invalid event date in the format dd/mm/yyyy'
+      }
+    }
+  }
+
   buildForm() {
-    this.formControlGroup = this._formBuilder.group({
-      bookmaker: [this.bet.bookmaker, Validators.required],
-      exchange: [this.bet.exchange, Validators.required],
-      eventDate: [this.bet.eventDate, Validators.compose([
+    // this.formControlGroup = this._formBuilder.group({
+    //   bookmaker: [this.bet.bookmaker, Validators.required],
+    //   exchange: [this.bet.exchange, Validators.required],
+    //   eventDate: [this.bet.eventDate, Validators.compose([
+    //     Validators.required, ValidationService.dateValidator
+    //   ])],
+    //   type: [this.bet.type, Validators.required],
+    //   event: [this.bet.event, Validators.required],
+    //   value: [this.bet.value, Validators.compose([
+    //     Validators.required, ValidationService.currencyValidator
+    //   ])],
+    // });
+
+    // TODO: create a new Class that extends Control and
+    // accepts an optional message object, then the validation
+    // message can be extracted from the control?
+    this.formControlGroup = new ControlGroup({
+      bookmaker: new Control(this.bet.bookmaker, Validators.required),
+      exchange: new Control(this.bet.exchange, Validators.required),
+      eventDate: new CustomControl(this.bet.eventDate, Validators.compose([
         Validators.required, ValidationService.dateValidator
-      ])],
-      type: [this.bet.type, Validators.required],
-      event: [this.bet.event, Validators.required],
-      value: [this.bet.value, Validators.compose([
+      ]), null, this.errorConfig.eventDate),
+      type: new Control(this.bet.type, Validators.required),
+      event: new Control(this.bet.event, Validators.required),
+      value: new Control(this.bet.value, Validators.compose([
         Validators.required, ValidationService.currencyValidator
-      ])],
+      ])),
     });
 
     this.buildingForm = false;
