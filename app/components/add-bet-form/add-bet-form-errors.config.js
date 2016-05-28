@@ -18,5 +18,9 @@ export const errorConfig = {
   value: {
     required: 'Value is required',
     invalidCurrency: 'Invalid amount'
+  },
+  outcome: {
+    required: 'Profit / loss is required',
+    invalidCurrency: 'Invalid profit / loss amount'
   }
 };

@@ -10,6 +10,7 @@ export class BetModel {
       type: null,
       event: null,
       value: null,
+      outcome: null,
       completed: false
     };
 
@@ -25,6 +26,7 @@ export class BetModel {
       type: this.type,
       event: this.event,
       value: this.value,
+      outcome: this.outcome,
       completed: this.completed
     };
   }

@@ -1,25 +1,29 @@
 import { Control } from '@angular/common';
 
 export class CustomControl extends Control {
-  eConfig;
+  config;
 
-  constructor(model, validator, asyncValidator, eConfig = {}) {
-    super(model, validator, asyncValidator);
+  constructor(model, validator, config = {}) {
+    super(model, validator);
 
-    this.eConfig = eConfig;
+    this.config = config;
   }
 
   get errorConfig() {
-    return this.eConfig;
+    return this.config;
   }
 
   setErrorConfig(config) {
-    this.eConfig = config;
+    this.config = config;
   }
 
   getErrorMessage(propertyName) {
-    if (!this.eConfig[propertyName]) return null;
+    if (!this.config[propertyName]) return null;
 
-    return this.eConfig[propertyName];
+    return this.config[propertyName];
+  }
+
+  isInvalid() {
+    return !this.valid && (!this.pristine || this.touched);
   }
 }

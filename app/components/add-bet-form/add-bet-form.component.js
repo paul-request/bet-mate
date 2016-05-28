@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ControlGroup, Control, Validators } from '@angular/common';
+import { FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
 
 import { ValidationService } from '../../services/validation.service';
 import { BetStoreService } from '../../services/bet-store.service';
@@ -17,7 +17,7 @@ import { BET_TYPES, BET_EVENTS, BOOKMAKERS, EXCHANGES } from  '../../constants/c
 })
 export class AddBetFormComponent {
   static get parameters() {
-    return [[BetStoreService]];
+    return [[BetStoreService], [FormBuilder]];
   }
 
   constructor(betStore) {
@@ -36,50 +36,63 @@ export class AddBetFormComponent {
   }
 
   buildForm() {
-    this.formControlGroup = new ControlGroup({
-      bookmaker: new CustomControl(
-        this.bet.bookmaker,
-        Validators.required,
-        null,
-        this.errorConfig.bookmaker
-      ),
-      exchange: new CustomControl(
-        this.bet.exchange,
-        Validators.required,
-        null,
-        this.errorConfig.exchange
-      ),
-      eventDate: new CustomControl(
-        this.bet.eventDate,
-        Validators.compose(
-          [Validators.required, ValidationService.dateValidator]
-        ),
-        null,
-        this.errorConfig.eventDate
-      ),
-      type: new CustomControl(
-        this.bet.type,
-        Validators.required,
-        null,
-        this.errorConfig.type
-      ),
-      event: new CustomControl(
-        this.bet.event,
-        Validators.required,
-        null,
-        this.errorConfig.event
-      ),
-      value: new CustomControl(
-        this.bet.value,
-        Validators.compose([
-          Validators.required, ValidationService.currencyValidator
-        ]),
-        null,
-        this.errorConfig.value
-      )
-    });
+    this.value = new CustomControl(
+      this.bet.value,
+      Validators.compose([
+        Validators.required, ValidationService.currencyValidator
+      ]),
+      this.errorConfig.value
+    );
 
-    this.buildingForm = false;
+    this.event = new CustomControl(
+      this.bet.event,
+      Validators.required,
+      this.errorConfig.event
+    );
+
+    this.type = new CustomControl(
+      this.bet.type,
+      Validators.required,
+      this.errorConfig.type
+    );
+
+    this.eventDate = new CustomControl(
+      this.bet.eventDate,
+      Validators.compose(
+        [Validators.required, ValidationService.dateValidator]
+      ),
+      this.errorConfig.eventDate
+    );
+
+    this.exchange = new CustomControl(
+      this.bet.exchange,
+      Validators.required,
+      this.errorConfig.exchange
+    );
+
+    this.bookmaker = new CustomControl(
+      this.bet.bookmaker,
+      Validators.required,
+      this.errorConfig.bookmaker
+    );
+
+    this.outcome = new CustomControl(
+      this.bet.outcome,
+      Validators.compose([
+        Validators.required, ValidationService.currencyValidator
+      ]),
+      this.errorConfig.outcome
+    );
+
+    this.betForm = new ControlGroup({
+      bookmaker: this.bookmaker,
+      exchange: this.exchange,
+      eventDate: this.eventDate,
+      type: this.type,
+      event: this.event,
+      value: this.value,
+      outcome: this.outcome
+    });
   }
 
   onSubmit() {

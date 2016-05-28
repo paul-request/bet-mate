@@ -1,102 +1,90 @@
- <form [ngFormModel]="formControlGroup"
-       (ngSubmit)="onSubmit()"
-       #betForm="ngForm">
+ <form [ngFormModel]="betForm"
+       (ngSubmit)="onSubmit()">
   <fieldset class="form-group"
-            [ngClass]="{ 'has-danger':
-              !formControlGroup.find('eventDate').valid &&
-              formControlGroup.find('eventDate').touched }">
+            [ngClass]="{ 'has-danger': eventDate.isInvalid() }">
     <label class="form-control-label" for="date">Event Date</label>
 
     <input type="date"
            class="form-control"
-           ngControl="eventDate"
-           #eventDate="ngForm"
-           [(ngModel)]="bet.eventDate">
+           ngControl="eventDate">
 
-    <control-messages control="eventDate"></control-messages>
+    <control-messages [control]="eventDate"></control-messages>
   </fieldset>
 
   <fieldset class="form-group"
-            [ngClass]="{ 'has-danger':
-              !formControlGroup.find('event').valid &&
-              formControlGroup.find('event').touched }">
+            [ngClass]="{ 'has-danger': event.isInvalid() }">
     <label class="form-control-label" for="event">Event</label>
 
     <select class="form-control c-select"
-            ngControl="event"
-            #event="ngForm"
-            [(ngModel)]="bet.event">
+            ngControl="event">
       <option *ngFor="let e of events" [value]="e">{{ e }}</option>
     </select>
 
-    <control-messages control="event"></control-messages>
+    <control-messages [control]="event"></control-messages>
   </fieldset>
 
   <fieldset class="form-group"
-            [ngClass]="{ 'has-danger':
-              !formControlGroup.find('type').valid &&
-              formControlGroup.find('type').touched }">
+            [ngClass]="{ 'has-danger': type.isInvalid() }">
     <label class="form-control-label" for="type">Bet type</label>
 
     <select class="form-control c-select"
-            ngControl="type"
-            #type="ngForm"
-            [(ngModel)]="bet.type">
+            ngControl="type">
       <option *ngFor="let type of types" [value]="type">{{ type }}</option>
     </select>
 
-    <control-messages control="type"></control-messages>
+    <control-messages [control]="type"></control-messages>
   </fieldset>
 
   <fieldset class="form-group"
-            [ngClass]="{ 'has-danger':
-              !formControlGroup.find('bookmaker').valid &&
-              formControlGroup.find('bookmaker').touched }">
+            [ngClass]="{ 'has-danger': bookmaker.isInvalid() }">
     <label class="form-control-label" for="bookmaker">Bookmaker</label>
 
     <select class="form-control c-select"
-            ngControl="bookmaker"
-            #bookmaker="ngForm"
-            [(ngModel)]="bet.bookmaker">
+            ngControl="bookmaker">
       <option *ngFor="let bookmaker of bookmakers"
               [value]="bookmaker">{{ bookmaker }}</option>
     </select>
 
-    <control-messages control="bookmaker"></control-messages>
+    <control-messages [control]="bookmaker"></control-messages>
   </fieldset>
 
   <fieldset class="form-group"
-            [ngClass]="{ 'has-danger':
-              !formControlGroup.find('exchange').valid &&
-              formControlGroup.find('exchange').touched }">
+            [ngClass]="{ 'has-danger': exchange.isInvalid() }">
     <label class="form-control-label" for="exchange">Exchange</label>
 
     <select class="form-control c-select"
-            ngControl="exchange"
-            #exchange="ngForm"
-            [(ngModel)]="bet.exchange">
+            ngControl="exchange">
       <option *ngFor="let exchange of exchanges" [value]="exchange">{{ exchange }}</option>
     </select>
 
-    <control-messages control="exchange"></control-messages>
+    <control-messages [control]="exchange"></control-messages>
   </fieldset>
 
   <fieldset class="form-group"
-            [ngClass]="{ 'has-danger':
-              !formControlGroup.find('value').valid &&
-              formControlGroup.find('value').touched }">
+            [ngClass]="{ 'has-danger': value.isInvalid() }">
     <label class="form-control-label" for="amount">Amount</label>
 
     <input type="text"
            class="form-control"
            ngControl="value"
-           #value="ngForm"
-           [(ngModel)]="bet.value">
+           placeholder="5.00">
 
-   <control-messages control="value"></control-messages>
+   <control-messages [control]="value"></control-messages>
+  </fieldset>
+
+  <fieldset class="form-group"
+            [ngClass]="{ 'has-danger': outcome.isInvalid() }">
+    <label class="form-control-label" for="outcome">Profit/loss</label>
+
+    <input type="text"
+           class="form-control"
+           ngControl="outcome"
+           placeholder="5.00">
+
+   <control-messages [control]="outcome"></control-messages>
   </fieldset>
 
   <button type="submit"
           class="btn btn-primary"
-          [disabled]="!betForm.form.valid">Add</button>
+          [disabled]="!betForm.valid">Add</button>
 </form>
