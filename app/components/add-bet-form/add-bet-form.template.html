@@ -1,12 +1,13 @@
  <form [ngFormModel]="betForm"
-       (ngSubmit)="onSubmit()">
+       (ngSubmit)="save()">
   <fieldset class="form-group"
             [ngClass]="{ 'has-danger': eventDate.isInvalid() }">
     <label class="form-control-label" for="date">Event Date</label>
 
     <input type="date"
            class="form-control"
-           ngControl="eventDate">
+           ngControl="eventDate"
+           [(ngModel)]="bet.eventDate">
 
     <control-messages [control]="eventDate"></control-messages>
   </fieldset>
@@ -16,7 +17,8 @@
     <label class="form-control-label" for="event">Event</label>
 
     <select class="form-control c-select"
-            ngControl="event">
+            ngControl="event"
+            [(ngModel)]="bet.event">
       <option *ngFor="let e of events" [value]="e">{{ e }}</option>
     </select>
 
@@ -28,7 +30,8 @@
     <label class="form-control-label" for="type">Bet type</label>
 
     <select class="form-control c-select"
-            ngControl="type">
+            ngControl="type"
+            [(ngModel)]="bet.type">
       <option *ngFor="let type of types" [value]="type">{{ type }}</option>
     </select>
 
@@ -40,7 +43,8 @@
     <label class="form-control-label" for="bookmaker">Bookmaker</label>
 
     <select class="form-control c-select"
-            ngControl="bookmaker">
+            ngControl="bookmaker"
+            [(ngModel)]="bet.bookmaker">
       <option *ngFor="let bookmaker of bookmakers"
               [value]="bookmaker">{{ bookmaker }}</option>
     </select>
@@ -53,7 +57,8 @@
     <label class="form-control-label" for="exchange">Exchange</label>
 
     <select class="form-control c-select"
-            ngControl="exchange">
+            ngControl="exchange"
+            [(ngModel)]="bet.exchange">
       <option *ngFor="let exchange of exchanges" [value]="exchange">{{ exchange }}</option>
     </select>
 
@@ -67,10 +72,11 @@
     <input type="text"
            class="form-control"
            ngControl="value"
+           [(ngModel)]="bet.value"
            placeholder="5.00">
 
    <control-messages [control]="value"></control-messages>
-  </fieldset>
+ </fieldset>
 
   <fieldset class="form-group"
             [ngClass]="{ 'has-danger': outcome.isInvalid() }">
@@ -79,6 +85,7 @@
     <input type="text"
            class="form-control"
            ngControl="outcome"
+           [(ngModel)]="bet.outcome"
            placeholder="5.00">
 
    <control-messages [control]="outcome"></control-messages>

@@ -1,7 +1,7 @@
 import * as uuid from 'node-uuid';
 
 export class BetModel {
-  constructor(...options) {
+  constructor(betStore, ...options) {
     const defaults = {
       uid: uuid.v4(),
       bookmaker: null,
@@ -15,6 +15,8 @@ export class BetModel {
     };
 
     Object.assign(this, defaults, options);
+
+    this._betStore = betStore;
   }
 
   get data() {

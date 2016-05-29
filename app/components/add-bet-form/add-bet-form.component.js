@@ -27,9 +27,7 @@ export class AddBetFormComponent {
     this.exchanges = EXCHANGES;
 
     this._betStore = betStore;
-
     this.bet = new BetModel();
-
     this.errorConfig = errorConfig;
 
     this.buildForm();
@@ -95,7 +93,7 @@ export class AddBetFormComponent {
     });
   }
 
-  onSubmit() {
+  save() {
     this._betStore.add(this.bet);
 
     this.bet = new BetModel();

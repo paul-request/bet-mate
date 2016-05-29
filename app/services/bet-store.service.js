@@ -8,13 +8,7 @@ export class BetStoreService {
   constructor() {
     let persistedBets = JSON.parse(localStorage.getItem(BET_STORE_KEYS.BETS)) || [];
 
-    this.bets = persistedBets.map(bet => {
-      const {
-        uid, bookmaker, exchange, eventDate, type, event, value, completed
-      } = bet;
-
-      return new BetModel(uid, bookmaker, exchange, eventDate, type, event, value, completed);
-    });
+    this.bets = persistedBets.map(bet => new BetModel(bet));
   }
 
   get(state) {
@@ -70,7 +64,7 @@ export class BetStoreService {
   }
 
   add(model) {
-    this.bets.push(model.data);
+    this.bets.push(model);
     this.persist();
   }
 
