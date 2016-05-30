@@ -1,12 +1,11 @@
 import { Control } from '@angular/common';
 
 export class CustomControl extends Control {
-  config;
-
   constructor(model, validator, config = {}) {
     super(model, validator);
 
     this.config = config;
+    this.model = model;
   }
 
   get errorConfig() {
@@ -25,5 +24,14 @@ export class CustomControl extends Control {
 
   isInvalid() {
     return !this.valid && (!this.pristine || this.touched);
+  }
+
+  reset() {
+    // Workaround until this is fixed
+    // https://github.com/angular/angular/issues/4933
+    this._pristine = true;
+    this._touched = false;
+    this._valid = true;
+    this.updateValue(this.model);
   }
 }

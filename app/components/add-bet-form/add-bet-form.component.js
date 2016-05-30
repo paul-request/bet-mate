@@ -20,13 +20,14 @@ export class AddBetFormComponent {
     return [[BetStoreService], [FormBuilder]];
   }
 
-  constructor(betStore) {
+  constructor(betStore, formBuilder) {
     this.types = BET_TYPES;
     this.events = BET_EVENTS;
     this.bookmakers = BOOKMAKERS;
     this.exchanges = EXCHANGES;
 
     this._betStore = betStore;
+    this._formBuilder = formBuilder;
     this.bet = new BetModel();
     this.errorConfig = errorConfig;
 
@@ -82,7 +83,7 @@ export class AddBetFormComponent {
       this.errorConfig.outcome
     );
 
-    this.betForm = new ControlGroup({
+    this.betForm = this._formBuilder.group({
       bookmaker: this.bookmaker,
       exchange: this.exchange,
       eventDate: this.eventDate,
@@ -98,9 +99,14 @@ export class AddBetFormComponent {
 
     this.bet = new BetModel();
 
+    this.reset();
+  }
+
+  reset() {
     // There is no way to reset a form built with FormBuilder
     // https://github.com/angular/angular/issues/4933
-    // So need to re-build form to reset everything
-    this.buildForm();
+    Object.keys(this.betForm.controls).forEach(controlName => {
+      this.betForm.controls[controlName].reset();
+    });
   }
 }
