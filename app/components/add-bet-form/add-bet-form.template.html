@@ -4,10 +4,10 @@
             [ngClass]="{ 'has-danger': eventDate.isInvalid() }">
     <label class="form-control-label" for="date">Event Date</label>
 
-    <input type="date"
+    <input type="text"
            class="form-control"
            ngControl="eventDate"
-           [(ngModel)]="bet.eventDate">
+           placeholder="dd/mm/yyyy">
 
     <control-messages [control]="eventDate"></control-messages>
   </fieldset>

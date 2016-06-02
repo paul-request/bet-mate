@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { Component } from '@angular/core';
 import { FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
 
@@ -7,8 +8,7 @@ import { CustomControl } from '../../services/custom-control.service';
 import { errorConfig } from './add-bet-form-errors.config';
 import { BetModel } from  '../../models/bet.model';
 import { ControlMessages } from '../common/control-messages.component';
-import { BET_FIELDS, INPUT_DEBOUNCE } from  '../../constants/constants';
-import CurrencyPipe from '../../pipes/currency.pipe'
+import { BET_FIELDS, INPUT_DEBOUNCE, MOMENT_DATE_FORMAT } from  '../../constants/constants';
 
 import template from './add-bet-form.template.html';
 
@@ -102,25 +102,21 @@ export class AddBetFormComponent {
   }
 
   setupTransforms() {
-    // TODO: how the bloody hell can I use a pipe to filter here!?
     this.outcome.valueChanges
-      .debounceTime(200)
+      .debounceTime(INPUT_DEBOUNCE)
       .map(value => parseFloat(value).toFixed(2))
       .filter(value => !this.outcome.isInvalid())
-      .subscribe(value => {
-        this.bet.outcome = value;
-      });
+      .subscribe(value => this.bet.outcome = value);
 
-    // this.bet.eventDate = this.eventDate.valueChanges
-    //   .debounceTime(INPUT_DEBOUNCE)
-    //   .map(value => transforms.toTimestamp(value))
-    //   .filter(value => !this.outcome.isInvalid())
-    //   .subscribe(value => value);
+    this.bet.eventDate = this.eventDate.valueChanges
+      .debounceTime(INPUT_DEBOUNCE)
+      .map(value => moment(value, MOMENT_DATE_FORMAT, true).toISOString())
+      .filter(value => !this.eventDate.isInvalid())
+      .subscribe(value => this.bet.eventDate = value);
   }
 
   save() {
-    console.log('BET', this.bet)
-    this._betStore.add(this.bet);
+    this._betStore.create(this.bet);
 
     this.bet = new BetModel();
 

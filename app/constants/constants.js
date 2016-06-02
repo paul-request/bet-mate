@@ -43,6 +43,7 @@ export const BET_FIELDS = {
 };
 
 export const DATE_FORMAT = 'dd/MM/yyyy';
+export const MOMENT_DATE_FORMAT = 'DD/MM/YYYY';
 
 export const CURRENCY = {
   name: 'Pound Sterling',

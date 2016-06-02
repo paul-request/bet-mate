@@ -63,7 +63,7 @@ export class BetStoreService {
     }
   }
 
-  add(model) {
+  create(model) {
     this.bets.push(model);
     this.persist();
   }
