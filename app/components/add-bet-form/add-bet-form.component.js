@@ -32,6 +32,8 @@ export class AddBetFormComponent {
     this.errorConfig = errorConfig;
 
     this.buildForm();
+
+    this.setupTransforms();
   }
 
   buildForm() {
@@ -92,6 +94,14 @@ export class AddBetFormComponent {
       value: this.value,
       outcome: this.outcome
     });
+  }
+
+  setupTransforms() {
+    console.log('setup transform')
+    this.outcome.valueChanges
+      .subscribe(value => {
+        this.bet.outcome = value + 'XXX';
+      });
   }
 
   save() {
