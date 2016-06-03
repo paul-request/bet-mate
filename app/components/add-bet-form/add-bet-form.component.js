@@ -102,6 +102,12 @@ export class AddBetFormComponent {
   }
 
   setupTransforms() {
+    this.value.valueChanges
+      .debounceTime(INPUT_DEBOUNCE)
+      .map(value => parseFloat(value).toFixed(2))
+      .filter(value => !this.value.isInvalid())
+      .subscribe(value => this.bet.value = value);
+
     this.outcome.valueChanges
       .debounceTime(INPUT_DEBOUNCE)
       .map(value => parseFloat(value).toFixed(2))
